@@ -1,0 +1,20 @@
+{
+  "site": "https://fashion-shop-demo-tom.netlify.app",
+  "checkedAt": "2026-10-11T06:51:34.077Z",
+  "published": 36,
+  "totalProducts": 73,
+  "checkedImages": 45,
+  "priceRange": [
+    159000,
+    699000
+  ],
+  "checks": {
+    "photosNamesColorsPrices": true,
+    "noInventedDiscounts": true,
+    "variantIdsSkuStockPreserved": true,
+    "ordersRequestsPreserved": true,
+    "storePoliciesContactsPreserved": true,
+    "draftPhotosCleared": true,
+    "threeLooksAndUpdatedBanners": true
+  }
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "photo": 1,
+    "width": 667,
+    "height": 1000,
+    "segmentationMs": 589,
+    "elapsedMs": 612,
+    "coverageBeforeCleanup": 0.12911544227886057,
+    "removedComponents": 1,
+    "manualForegroundHints": 4,
+    "manualBackgroundHints": 1,
+    "explicitDecisionsPreserved": true
+  },
+  {
+    "photo": 2,
+    "width": 710,
+    "height": 1000,
+    "segmentationMs": 902,
+    "elapsedMs": 927,
+    "coverageBeforeCleanup": 0.1777225352112676,
+    "removedComponents": 0,
+    "manualForegroundHints": 10,
+    "manualBackgroundHints": 4,
+    "explicitDecisionsPreserved": true
+  },
+  {
+    "photo": 3,
+    "width": 667,
+    "height": 1000,
+    "segmentationMs": 598,
+    "elapsedMs": 612,
+    "coverageBeforeCleanup": 0.12268665667166417,
+    "removedComponents": 1,
+    "manualForegroundHints": 4,
+    "manualBackgroundHints": 3,
+    "explicitDecisionsPreserved": true
+  },
+  {
+    "photo": 4,
+    "width": 693,
+    "height": 1000,
+    "segmentationMs": 740,
+    "elapsedMs": 770,
+    "coverageBeforeCleanup": 0.375987012987013,
+    "removedComponents": 0,
+    "manualForegroundHints": 9,
+    "manualBackgroundHints": 4,
+    "explicitDecisionsPreserved": true
+  },
+  {
+    "photo": 5,
+    "width": 667,
+    "height": 1000,
+    "segmentationMs": 652,
+    "elapsedMs": 660,
+    "coverageBeforeCleanup": 0.0944167916041979,
+    "removedComponents": 1,
+    "manualForegroundHints": 8,
+    "manualBackgroundHints": 2,
+    "explicitDecisionsPreserved": true
+  },
+  {
+    "photo": 6,
+    "width": 667,
+    "height": 1000,
+    "segmentationMs": 516,
+    "elapsedMs": 525,
+    "coverageBeforeCleanup": 0.10813493253373313,
+    "removedComponents": 13,
+    "manualForegroundHints": 4,
+    "manualBackgroundHints": 6,
+    "explicitDecisionsPreserved": true
+  }
+]

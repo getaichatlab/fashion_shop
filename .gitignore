@@ -1,0 +1,14 @@
+node_modules/
+.next/
+data/
+.env.local
+test-results/
+playwright-report/
+*.log
+.npm-cache/
+.browsers/
+*.tsbuildinfo
+.netlify/
+
+# Local Netlify folder
+.netlify

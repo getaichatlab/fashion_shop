@@ -1,0 +1,20 @@
+{
+  "site": "https://fashion-shop-demo-tom.netlify.app",
+  "verifiedAt": "2026-10-11T05:20:01.171Z",
+  "checks": [
+    "Anonymous storefront, 36 published models, protected admin",
+    "Owner login and durable session; 36 private draft models",
+    "Cross-origin admin mutation blocked",
+    "Cloud image storage survives a fresh request; unattached image is private",
+    "Draft photo and product stay private; publishing requires approval",
+    "Approved product and stored photo become visible together",
+    "Concurrent last-unit reservation, repeat protection, tracking and admin persistence",
+    "Cancellation restores the reserved stock",
+    "QA product archived; customer catalog restored to 36 models"
+  ],
+  "qaProductId": "b852ae81-5b74-45a5-ac80-e0f04ea8e7c7",
+  "qaOrders": [
+    "FS-MV3DJAZW-A715"
+  ],
+  "cleanup": "QA orders cancelled and product archived; history retained"
+}

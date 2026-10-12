@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {available,deliveryPrice,nextStatuses,validPhone,paymentsFor,whiteContrast} from '../src/lib/domain.ts';
+test('reserved stock is unavailable and cannot become negative',()=>{assert.equal(available(5,3),2);assert.equal(available(2,4),0);});
+test('pickup does not incur delivery charges',()=>{assert.equal(deliveryPrice(200000,'pickup',{deliveryMode:'quote',deliveryFee:35000,freeAbove:0}),0);});
+test('quote is unknown rather than presented as free',()=>{assert.equal(deliveryPrice(200000,'delivery',{deliveryMode:'quote',deliveryFee:35000,freeAbove:0}),null);});
+test('free delivery boundary is inclusive',()=>{const s={deliveryMode:'fixed',deliveryFee:35000,freeAbove:500000};assert.equal(deliveryPrice(499999,'delivery',s),35000);assert.equal(deliveryPrice(500000,'delivery',s),0);});
+test('fulfillment transitions prohibit shipping pickup orders',()=>{assert.deepEqual(nextStatuses('pickup','preparing'),['ready','cancelled']);assert.deepEqual(nextStatuses('delivery','preparing'),['shipped','cancelled']);assert.deepEqual(nextStatuses('pickup','cancelled'),[]);assert.deepEqual(nextStatuses('pickup','completed'),['returned']);});
+test('Uzbek phones accept spacing and reject incomplete values',()=>{assert.equal(validPhone('+998 (90) 123-45-67'),true);assert.equal(validPhone('901234567'),false);assert.equal(validPhone('+99890123'),false);});
+test('payment methods follow pickup vs delivery',()=>{const methods=['Do‘konda naqd','Yetkazishda naqd','Sotuvchi bilan kelishiladi'];assert.deepEqual(paymentsFor('pickup',methods),['Do‘konda naqd','Sotuvchi bilan kelishiladi']);assert.deepEqual(paymentsFor('delivery',methods),['Yetkazishda naqd','Sotuvchi bilan kelishiladi']);});
+test('brand colors preserve readable white labels',()=>{assert.ok(whiteContrast('#702d43')>=4.5);assert.ok(whiteContrast('#ffffff')<4.5);});

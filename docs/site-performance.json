@@ -1,0 +1,60 @@
+{
+  "measuredAt": "2026-10-10T12:47:54.238Z",
+  "environment": "Local production server, Chromium; cold browser cache; mobile CPU 4x / 4 Mbps / 100 ms RTT; reduced motion. Event timing is a laboratory interaction observation, not field INP.",
+  "results": [
+    {
+      "profile": "desktop-local",
+      "run": 1,
+      "lcpMs": 436,
+      "fcpMs": 60,
+      "cls": 0,
+      "maxObservedInteractionMs": 64,
+      "homeTransferredBytes": 2381878
+    },
+    {
+      "profile": "desktop-local",
+      "run": 2,
+      "lcpMs": 420,
+      "fcpMs": 44,
+      "cls": 0,
+      "maxObservedInteractionMs": 56,
+      "homeTransferredBytes": 2381882
+    },
+    {
+      "profile": "desktop-local",
+      "run": 3,
+      "lcpMs": 420,
+      "fcpMs": 48,
+      "cls": 0,
+      "maxObservedInteractionMs": 64,
+      "homeTransferredBytes": 2381879
+    },
+    {
+      "profile": "mobile-throttled",
+      "run": 1,
+      "lcpMs": 2520,
+      "fcpMs": 404,
+      "cls": 0.0001,
+      "maxObservedInteractionMs": 112,
+      "homeTransferredBytes": 1218001
+    },
+    {
+      "profile": "mobile-throttled",
+      "run": 2,
+      "lcpMs": 2544,
+      "fcpMs": 400,
+      "cls": 0.0001,
+      "maxObservedInteractionMs": 112,
+      "homeTransferredBytes": 1217998
+    },
+    {
+      "profile": "mobile-throttled",
+      "run": 3,
+      "lcpMs": 2512,
+      "fcpMs": 400,
+      "cls": 0.0001,
+      "maxObservedInteractionMs": 96,
+      "homeTransferredBytes": 1218001
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+export function available(stock:number,reserved:number){return Math.max(0,stock-reserved);}
+export function deliveryPrice(subtotal:number,method:string,settings:{deliveryMode:string;deliveryFee:number;freeAbove:number}){if(method==='pickup')return 0;if(settings.freeAbove>0&&subtotal>=settings.freeAbove)return 0;return settings.deliveryMode==='quote'?null:settings.deliveryFee;}
+export function nextStatuses(method:string,status:string){const flow=method==='pickup'?['new','confirmed','preparing','ready','completed']:['new','confirmed','preparing','shipped','completed'];const index=flow.indexOf(status);return [...(index>=0&&index<flow.length-1?[flow[index+1]]:[]),...(['new','confirmed','preparing','ready'].includes(status)?['cancelled']:[]),...(status==='completed'?['returned']:[])];}
+export function validPhone(phone:string){return /^\+?998\d{9}$/.test(phone.replace(/[\s()-]/g,''));}
+export function paymentsFor(method:string,methods:string[]){return methods.filter(p=>method==='pickup'?!p.startsWith('Yetkazishda'):!p.startsWith('Do‘konda'));}
+export function whiteContrast(hex:string){const rgb=hex.slice(1).match(/.{2}/g)!.map(x=>parseInt(x,16)/255).map(x=>x<=0.04045?x/12.92:((x+0.055)/1.055)**2.4);return 1.05/(rgb[0]*0.2126+rgb[1]*0.7152+rgb[2]*0.0722+0.05);}

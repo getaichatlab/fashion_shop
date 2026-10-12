@@ -1,0 +1,12 @@
+import {DatabaseSync} from 'node:sqlite';
+import fs from 'node:fs';
+import path from 'node:path';
+const root=process.cwd(),data=path.join(root,'data'),source=path.join(data,'fashion.sqlite');
+if(!fs.existsSync(source))throw Error('Baza hali yaratilmagan. Avval saytni ishga tushiring.');
+const stamp=new Date().toISOString().replace(/[:.]/g,'-'),destination=path.join(data,'backups',stamp);
+fs.mkdirSync(destination,{recursive:true});
+const db=new DatabaseSync(source),file=path.join(destination,'fashion.sqlite');
+db.exec("VACUUM INTO '"+file.replace(/'/g,"''")+"'");db.close();
+if(fs.existsSync(path.join(data,'media')))fs.cpSync(path.join(data,'media'),path.join(destination,'media'),{recursive:true});
+fs.writeFileSync(path.join(destination,'backup.json'),JSON.stringify({createdAt:new Date().toISOString(),database:'fashion.sqlite',media:'media'},null,2));
+console.log('Zaxira nusxa yaratildi: '+destination);

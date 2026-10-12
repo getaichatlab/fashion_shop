@@ -1,0 +1,8 @@
+{"schema":"openai.presentation.layout/v5","unit":"px","slide":{"id":"sl/c28vue","index":0,"layout":{"id":"ly/cba98v2x","name":"Blank"},"backgroundColor":"rgba(246,240,231,1)","position":{"left":0,"top":0,"width":1280,"height":720}},
+"elements":[
+{"id":"im/krih4bah","kind":"image","position":{"left":744,"top":0,"width":536,"height":720},"fit":"cover","alt":"Fashion Shop namunaviy moviy uzun ko‘ylak surati"},
+{"id":"sh/il4vydo7","kind":"textbox","name":"Fashion Shop","position":{"left":62,"top":57,"width":600,"height":59},"text":"Fashion Shop","style":{"fontSize":44,"typeface":"Georgia","color":"#622C46","italic":true,"alignment":"left"},"geometry":"rect","lineWidth":0},
+{"id":"sh/jmdc7i5s","kind":"textbox","name":"Kiyim do‘koningiz\nuchun onlayn\nvitrina","position":{"left":62,"top":165,"width":655,"height":276},"text":"Kiyim do‘koningiz\nuchun onlayn\nvitrina","style":{"fontSize":69,"typeface":"Georgia","color":"#261A20","alignment":"left"},"geometry":"rect","lineWidth":0},
+{"id":"sh/wjmdwn6h","kind":"textbox","name":"Veb sayt, boshqaruv paneli\nva Telegram xabarnomalari","position":{"left":66,"top":478,"width":605,"height":72},"text":"Veb sayt, boshqaruv paneli\nva Telegram xabarnomalari","style":{"fontSize":27,"typeface":"Arial","color":"#622C46","alignment":"left"},"geometry":"rect","lineWidth":0},
+{"id":"sh/xkvu5sn2","kind":"textbox","name":"Mijoz narx va o‘lchamni oldindan ko‘radi.\nSotuvchingiz bir xil savolla","position":{"left":66,"top":575,"width":610,"height":105},"text":"Mijoz narx va o‘lchamni oldindan ko‘radi.\nSotuvchingiz bir xil savollarga\nkamroq vaqt sarflaydi.","style":{"fontSize":23,"typeface":"Arial","color":"#655A5C","alignment":"left"},"geometry":"rect","lineWidth":0}
+]}

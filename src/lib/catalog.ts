@@ -1,0 +1,21 @@
+import type {Product,Variant} from './types';
+export const occasions=['Kundalik','Ish uchun','Bayram','Sayr'];
+export const seasons=['Barcha mavsum','Bahor','Yoz','Kuz','Qish'];
+export const fits=['Erkin','To‘g‘ri','Tanaga mos','Oversize'];
+export function normalizeSearch(value:string){return value.toLowerCase().normalize('NFKD').replace(/[‘’ʻʼ`'"\u0300-\u036f]/g,'').replace(/ko(?:y|i)lak/g,'koylak').replace(/джинс|jeans/g,'jinsi').replace(/футболка|t-shirt/g,'futbolka').replace(/\s+/g,' ').trim();}
+export function matchesProduct(p:Product,q:string){const text=normalizeSearch([p.name,p.code,p.category,p.fabric,p.fit,p.season,...p.variants.map(v=>v.sku||''),...(p.occasions||[])].join(' '));return normalizeSearch(q).split(' ').every(word=>text.includes(word));}
+export function variantPrice(p:Product,v?:Variant){return v?.price??p.price;}
+export function colorImages(p:Product,color:string){return p.media.filter(url=>(p.colorMedia?.[color]||[]).includes(url));}
+export function preparedMediaLinks(p:Partial<Product>,prepared:string,source?:string){return Object.fromEntries(Object.entries(p.colorMedia||{}).map(([color,urls])=>[color,source&&urls.includes(source)?[prepared,...urls]:urls]));}
+export function lowestPrice(p:Product){return p.variants.length?Math.min(...p.variants.map(v=>variantPrice(p,v))):p.price;}
+export function styleMatches(p:Product,occasion:string,budget:number,size:string){return (!occasion||p.occasions?.includes(occasion))&&p.variants.some(v=>v.available>0&&(!size||v.size===size)&&variantPrice(p,v)<=budget);}
+export type StockRow={sku:string;quantity:number};
+export function parseCSV(text:string){const rows:string[][]=[];let row:string[]=[],cell='',quoted=false;for(let i=0;i<text.length;i++){const c=text[i];if(c==='"'){if(quoted&&text[i+1]==='"'){cell+='"';i++;}else if(!quoted&&cell)throw Error('CSV qo‘shtirnoqlari noto‘g‘ri.');else quoted=!quoted;}else if(c===','&&!quoted){row.push(cell.trim());cell='';}else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&text[i+1]==='\n')i++;row.push(cell.trim());if(row.some(Boolean))rows.push(row);row=[];cell='';}else cell+=c;}if(quoted)throw Error('CSV qo‘shtirnoqlari yopilmagan.');row.push(cell.trim());if(row.some(Boolean))rows.push(row);return rows;}
+export function parseProductCSV(text:string){if(text.length>500000)throw Error('CSV 500 KB dan kichik bo‘lsin.');const rows=parseCSV(text.replace(/^\uFEFF/,'')),header=rows.shift()?.map(x=>x.toLowerCase());const required=['code','name','category','price','color','hex','size','stock','sku'];if(!header||required.some(k=>!header.includes(k))||new Set(header).size!==header.length)throw Error('Sarlavha: code,name,category,price,color,hex,size,stock,sku');if(!rows.length||rows.length>1000)throw Error('CSV 1–1000 qator bo‘lsin.');const seen=new Set<string>();return rows.map((cells,i)=>{const r=Object.fromEntries(header.map((k,j)=>[k,cells[j]||''])) as any;r.line=i+2;r.price=Number(r.price);r.stock=Number(r.stock);r.sku=String(r.sku).toUpperCase();r.error=cells.length!==header.length||!r.code||!r.name||!r.category||!r.color||!r.size||!Number.isSafeInteger(r.price)||r.price<1000||!Number.isSafeInteger(r.stock)||r.stock<0||r.stock>100000||!/^#[0-9a-f]{6}$/i.test(r.hex)||! /^[A-Z0-9_-]{3,100}$/.test(r.sku)?'Maydonlar, narx, tus va qoldiqni tekshiring.':seen.has(r.sku)?'SKU takrorlangan.':'';seen.add(r.sku);return r;});}
+export function parseStockCSV(text:string){
+ if(text.length>500000)throw Error('CSV 500 KB dan kichik bo‘lsin.');
+ const lines=text.replace(/^\uFEFF/,'').trim().split(/\r?\n/);const delimiter=lines[0]?.includes(';')?';':',';
+ if(lines.shift()?.toLowerCase().replace(/\s/g,'')!==`sku${delimiter}quantity`)throw Error('Sarlavha: sku,quantity. Har qatorga SKU va butun son kiriting.');
+ if(!lines.length||lines.length>1000)throw Error('CSV 1–1000 qator bo‘lsin.');
+ const seen=new Set<string>();return lines.map((line,i)=>{const cells=line.split(delimiter).map(x=>x.trim());const sku=cells[0]?.toUpperCase(),quantity=Number(cells[1]);let error='';if(cells.length!==2||!sku||!cells[1]||!Number.isSafeInteger(quantity)||quantity<0||quantity>100000)error='SKU va 0–100000 butun miqdor kerak.';else if(seen.has(sku))error='SKU takrorlangan.';seen.add(sku);return {sku,quantity,line:i+2,error};});
+}

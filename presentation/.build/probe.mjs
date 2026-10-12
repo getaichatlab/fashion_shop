@@ -1,0 +1,12 @@
+import {Presentation,PresentationFile} from '@oai/artifact-tool';
+import {GlobalFonts} from '@napi-rs/canvas';
+console.log('FONTS',GlobalFonts.families.map(f=>f.family).filter(f=>/Arial|Georgia|DM Sans|Times|Aptos/.test(f)));
+const p=Presentation.create({slideSize:{width:1280,height:720}});
+const s=p.slides.add();s.background.fill='#F6F0E7';
+const t=s.shapes.add({geometry:'textbox',position:{left:64,top:80,width:700,height:130},fill:'none',line:{fill:'none',width:0}});
+t.text='Do‘koningiz uchun onlayn vitrina';t.text.style={typeface:'Georgia',fontSize:68,color:'#261A20',autoFit:'none',insets:0};
+s.speakerNotes.text='Test';
+await (await PresentationFile.exportPptx(p)).save('D:/fr_sayt/fashion_shop/presentation/.build/probe.pptx');
+const b=await p.export({slide:s,format:'png',scale:1});
+const fs=await import('node:fs/promises');await fs.writeFile('D:/fr_sayt/fashion_shop/presentation/.build/probe.png',new Uint8Array(await b.arrayBuffer()));
+console.log('OK');

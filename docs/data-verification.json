@@ -1,0 +1,27 @@
+{
+  "verifiedAt": "2026-10-10T12:51:14.416Z",
+  "integrity": "ok",
+  "foreignKeyErrors": [],
+  "demoModels": 72,
+  "publishedDemoModels": 36,
+  "draftDemoModels": 36,
+  "missingMedia": [],
+  "missingReferences": [],
+  "preservation": {
+    "baseline": "data/backups/2026-10-10T06-25-43-762Z",
+    "priorProducts": 38,
+    "missingProductIds": [],
+    "priorVariants": 158,
+    "missingVariantIds": [],
+    "priorOrders": 19,
+    "missingOrderIds": [],
+    "originalDemoStockChanges": [],
+    "originalDemoReservationChanges": [
+      {
+        "id": "p2-0-0",
+        "before": 1,
+        "after": 0
+      }
+    ]
+  }
+}
